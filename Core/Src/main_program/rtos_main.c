@@ -32,6 +32,8 @@ void StartDefaultTask(void *argument) {
 		uros_agent_status_check();
         osDelay(1000/FREQUENCY);
 
+        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+        osDelay(500);
 		//The code below should write in Timer Interrupt. NOT here!
 		sec++;
 		// if(enable) dc_motor(dir);

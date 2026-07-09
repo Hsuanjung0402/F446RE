@@ -35,7 +35,7 @@ void uros_init(void) {
   // Initialize micro-ROS
   rmw_uros_set_custom_transport(
     true,
-    (void *) &USARTx,
+    (void *) &huart2,
     cubemx_transport_open,
     cubemx_transport_close,
     cubemx_transport_write,
