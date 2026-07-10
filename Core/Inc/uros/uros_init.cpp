@@ -25,11 +25,12 @@ agent_status_t status = AGENT_WAITING;
 
 int mission_status = 0;
 
+int a = 0;
+
 int ping_fail_count = 0;
 #define MAX_PING_FAIL_COUNT 5
 
-
-extern UART_HandleTypeDef USARTx;
+extern UART_HandleTypeDef huart2;
 
 void uros_init(void) {
   // Initialize micro-ROS
@@ -51,6 +52,7 @@ void uros_init(void) {
   if (!rcutils_set_default_allocator(&freeRTOS_allocator)) {
   printf("Error on default allocators (line %d)\n", __LINE__); 
   }
+  a = 1;
 }
 
 void uros_agent_status_check(void) {
@@ -76,13 +78,16 @@ void uros_agent_status_check(void) {
 }
 
 void handle_state_agent_waiting(void) {
+	a = 2;
   status = (rmw_uros_ping_agent(100, 10) == RMW_RET_OK) ? AGENT_AVAILABLE : AGENT_WAITING;
 }
 void handle_state_agent_available(void) {
+	a = 3;
   uros_create_entities();
   status = AGENT_CONNECTED;
 }
 void handle_state_agent_connected(void) {
+	a = 4;
   if(rmw_uros_ping_agent(20, 5) == RMW_RET_OK){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
     ping_fail_count = 0; // Reset ping fail count
@@ -111,6 +116,7 @@ void handle_state_agent_disconnected(void) {
 }
 
 void uros_create_entities(void) {
+	a = 100;
   allocator = rcl_get_default_allocator();
 
   init_options = rcl_get_zero_initialized_init_options();

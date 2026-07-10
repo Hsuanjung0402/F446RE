@@ -20,22 +20,21 @@
 #define angle_1_2 180
 #define angle_2_1 40
 #define angle_2_2 126
-
-int sec = 0, test = 0;
+int test = 0;
 volatile int enable = 0, dir = 0;
+
+extern TIM_HandleTypeDef htim5;
 
 void StartDefaultTask(void *argument) {
 	// initial();
+	HAL_TIM_Base_Start_IT(&htim5);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
 	uros_init();
 	for (;;) {
-
 		uros_agent_status_check();
         osDelay(1000/FREQUENCY);
 
-        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-        osDelay(500);
 		//The code below should write in Timer Interrupt. NOT here!
-		sec++;
 		// if(enable) dc_motor(dir);
 		// else dc_motor(0), dir = 0;
 		// HAL_Delay(2000);

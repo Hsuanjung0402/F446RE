@@ -90,16 +90,19 @@ void HAL_MspInit(void)
   */
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 {
-  if(htim_base->Instance==TIM12)
+  if(htim_base->Instance==TIM5)
   {
-    /* USER CODE BEGIN TIM12_MspInit 0 */
+    /* USER CODE BEGIN TIM5_MspInit 0 */
 
-    /* USER CODE END TIM12_MspInit 0 */
+    /* USER CODE END TIM5_MspInit 0 */
     /* Peripheral clock enable */
-    __HAL_RCC_TIM12_CLK_ENABLE();
-    /* USER CODE BEGIN TIM12_MspInit 1 */
+    __HAL_RCC_TIM5_CLK_ENABLE();
+    /* TIM5 interrupt Init */
+    HAL_NVIC_SetPriority(TIM5_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(TIM5_IRQn);
+    /* USER CODE BEGIN TIM5_MspInit 1 */
 
-    /* USER CODE END TIM12_MspInit 1 */
+    /* USER CODE END TIM5_MspInit 1 */
 
   }
 
@@ -113,16 +116,19 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
   */
 void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
 {
-  if(htim_base->Instance==TIM12)
+  if(htim_base->Instance==TIM5)
   {
-    /* USER CODE BEGIN TIM12_MspDeInit 0 */
+    /* USER CODE BEGIN TIM5_MspDeInit 0 */
 
-    /* USER CODE END TIM12_MspDeInit 0 */
+    /* USER CODE END TIM5_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_TIM12_CLK_DISABLE();
-    /* USER CODE BEGIN TIM12_MspDeInit 1 */
+    __HAL_RCC_TIM5_CLK_DISABLE();
 
-    /* USER CODE END TIM12_MspDeInit 1 */
+    /* TIM5 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(TIM5_IRQn);
+    /* USER CODE BEGIN TIM5_MspDeInit 1 */
+
+    /* USER CODE END TIM5_MspDeInit 1 */
   }
 
 }
@@ -193,6 +199,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 
     __HAL_LINKDMA(huart,hdmatx,hdma_usart2_tx);
 
+    /* USART2 interrupt Init */
+    HAL_NVIC_SetPriority(USART2_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
     /* USER CODE BEGIN USART2_MspInit 1 */
 
     /* USER CODE END USART2_MspInit 1 */
@@ -226,6 +235,9 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     /* USART2 DMA DeInit */
     HAL_DMA_DeInit(huart->hdmarx);
     HAL_DMA_DeInit(huart->hdmatx);
+
+    /* USART2 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(USART2_IRQn);
     /* USER CODE BEGIN USART2_MspDeInit 1 */
 
     /* USER CODE END USART2_MspDeInit 1 */
