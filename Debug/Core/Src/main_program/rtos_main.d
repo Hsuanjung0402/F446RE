@@ -28,6 +28,7 @@ Core/Src/main_program/rtos_main.o: ../Core/Src/main_program/rtos_main.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h \
+ ../Core/Inc/init.h \
  /home/hsuanjung/STM32CubeIDE/workspace_260617/STM32F446RE/Core/Inc/uros/uros_init.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
@@ -194,7 +195,9 @@ Core/Src/main_program/rtos_main.o: ../Core/Src/main_program/rtos_main.c \
  /home/hsuanjung/STM32CubeIDE/workspace_260617/STM32F446RE/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include/std_msgs/msg/detail/bool__type_support.h \
  /home/hsuanjung/STM32CubeIDE/workspace_260617/STM32F446RE/Core/Inc/uros/uros_config.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../Core/Inc/DC_motor_ctrl.h ../Core/Inc/servo_control.h \
+ ../Core/Inc/motor_config.h
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -224,6 +227,7 @@ Core/Src/main_program/rtos_main.o: ../Core/Src/main_program/rtos_main.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h:
+../Core/Inc/init.h:
 /home/hsuanjung/STM32CubeIDE/workspace_260617/STM32F446RE/Core/Inc/uros/uros_init.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
@@ -391,3 +395,6 @@ Core/Src/main_program/rtos_main.o: ../Core/Src/main_program/rtos_main.c \
 /home/hsuanjung/STM32CubeIDE/workspace_260617/STM32F446RE/Core/Inc/uros/uros_config.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+../Core/Inc/DC_motor_ctrl.h:
+../Core/Inc/servo_control.h:
+../Core/Inc/motor_config.h:

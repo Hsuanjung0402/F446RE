@@ -1,5 +1,6 @@
 {
     "conventionalCommits.scopes": [
-        "Microros_connectivity"
+        "Microros_connectivity",
+        "DC motor"
     ]
 }

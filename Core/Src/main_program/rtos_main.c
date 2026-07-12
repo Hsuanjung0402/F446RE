@@ -18,8 +18,10 @@
 
 int test = 0;
 volatile int limsw = 0;
+volatile int mission_status_ = 0;
 
 extern TIM_HandleTypeDef htim5;
+extern int mission_status;
 
 void StartDefaultTask(void *argument) {
 	initial();
@@ -36,10 +38,10 @@ void StartServoTask(void *argument)
 {
 	for (;;)
 	{
-		switch (mission_status)
+		switch (mission_status_)
 		{
 		case 1:
-			mission_status = 0;
+			mission_status_ = 0;
 			set_servo_angle(2, angle_2_2, angle_2_1);
 			osDelay(1000);
 			set_servo_angle(1, angle_1_2, angle_1_1);
@@ -51,18 +53,18 @@ void StartServoTask(void *argument)
 			break;
 
 		case 2:
-            mission_status = 0;
+            mission_status_ = 0;
             limsw = 0;
             dc_motor(1);
-            while (limsw == 0) 
+            while (limsw == 0)
             {
-                osDelay(10); 
+                osDelay(10);
             }
             dc_motor(0);
             dc_motor(2);
             osDelay(1000);
             limsw = 0;
-            while (limsw == 0) 
+            while (limsw == 0)
             {
                 osDelay(10);
             }
@@ -77,8 +79,14 @@ void StartServoTask(void *argument)
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-	if( GPIO_Pin == GPIO_PIN_1){
-		limsw++;
-	}
-}
+    static uint32_t last_trigger_time = 0;
+    uint32_t current_time = HAL_GetTick();
 
+    if( GPIO_Pin == GPIO_PIN_1){
+        // 限制兩次觸發之間至少間隔 50 毫秒
+        if (current_time - last_trigger_time > 50) {
+            limsw = 1; // 建議用 boolean 狀態取代 ++，避免數值溢位或難以預測
+            last_trigger_time = current_time;
+        }
+    }
+}

@@ -5,13 +5,22 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/main_program/rtos_main.c 
+../Core/Src/main_program/DC_motor_ctrl.c \
+../Core/Src/main_program/init.c \
+../Core/Src/main_program/rtos_main.c \
+../Core/Src/main_program/servo_control.c 
 
 C_DEPS += \
-./Core/Src/main_program/rtos_main.d 
+./Core/Src/main_program/DC_motor_ctrl.d \
+./Core/Src/main_program/init.d \
+./Core/Src/main_program/rtos_main.d \
+./Core/Src/main_program/servo_control.d 
 
 OBJS += \
-./Core/Src/main_program/rtos_main.o 
+./Core/Src/main_program/DC_motor_ctrl.o \
+./Core/Src/main_program/init.o \
+./Core/Src/main_program/rtos_main.o \
+./Core/Src/main_program/servo_control.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +30,7 @@ Core/Src/main_program/%.o Core/Src/main_program/%.su Core/Src/main_program/%.cyc
 clean: clean-Core-2f-Src-2f-main_program
 
 clean-Core-2f-Src-2f-main_program:
-	-$(RM) ./Core/Src/main_program/rtos_main.cyclo ./Core/Src/main_program/rtos_main.d ./Core/Src/main_program/rtos_main.o ./Core/Src/main_program/rtos_main.su
+	-$(RM) ./Core/Src/main_program/DC_motor_ctrl.cyclo ./Core/Src/main_program/DC_motor_ctrl.d ./Core/Src/main_program/DC_motor_ctrl.o ./Core/Src/main_program/DC_motor_ctrl.su ./Core/Src/main_program/init.cyclo ./Core/Src/main_program/init.d ./Core/Src/main_program/init.o ./Core/Src/main_program/init.su ./Core/Src/main_program/rtos_main.cyclo ./Core/Src/main_program/rtos_main.d ./Core/Src/main_program/rtos_main.o ./Core/Src/main_program/rtos_main.su ./Core/Src/main_program/servo_control.cyclo ./Core/Src/main_program/servo_control.d ./Core/Src/main_program/servo_control.o ./Core/Src/main_program/servo_control.su
 
 .PHONY: clean-Core-2f-Src-2f-main_program
 
